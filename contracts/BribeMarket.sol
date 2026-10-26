@@ -12,7 +12,12 @@ interface IGaugeAdapter {
 }
 
 contract BribeMarket {
-    enum EpochStatus { Open, VotingClosed, Dispute, ClaimsOpen }
+    enum EpochStatus {
+        Open,
+        VotingClosed,
+        Dispute,
+        ClaimsOpen
+    }
 
     error NotOwner();
     error NotPublisher();
@@ -67,10 +72,14 @@ contract BribeMarket {
     event GaugeAdapterUpdated(address indexed adapter);
     event TokenAllowlisted(address indexed token, bool allowed, uint256 minimumDeposit);
     event EpochStateChanged(uint256 indexed epoch, EpochStatus status, uint256 timestamp);
-    event BribeDeposited(address indexed briber, uint256 indexed epoch, address indexed gauge, address token, uint256 amount);
+    event BribeDeposited(
+        address indexed briber, uint256 indexed epoch, address indexed gauge, address token, uint256 amount
+    );
     event RootPublished(uint256 indexed epoch, bytes32 indexed root, uint256 disputeEnds);
     event Claimed(address indexed voter, uint256 indexed epoch, address indexed gauge, address token, uint256 amount);
-    event BribeRefunded(address indexed briber, uint256 indexed epoch, address indexed gauge, address token, uint256 amount);
+    event BribeRefunded(
+        address indexed briber, uint256 indexed epoch, address indexed gauge, address token, uint256 amount
+    );
     event ClaimsPauseChanged(bool paused);
 
     modifier onlyOwner() {
@@ -149,7 +158,9 @@ contract BribeMarket {
 
     function closeEpoch(uint256 epoch) external onlyOwner {
         EpochConfig storage config = epochs[epoch];
-        if (config.status != EpochStatus.Open || config.depositClose == 0 || block.timestamp < config.depositClose) revert EpochNotOpen();
+        if (config.status != EpochStatus.Open || config.depositClose == 0 || block.timestamp < config.depositClose) {
+            revert EpochNotOpen();
+        }
         config.status = EpochStatus.VotingClosed;
         emit EpochStateChanged(epoch, EpochStatus.VotingClosed, block.timestamp);
     }
@@ -200,11 +211,21 @@ contract BribeMarket {
         emit BribeDeposited(msg.sender, epoch, gauge, token, amount);
     }
 
-    function claim(uint256 epoch, address gauge, address token, uint256 amount, bytes32[] calldata proof) external nonReentrant {
+    function claim(uint256 epoch, address gauge, address token, uint256 amount, bytes32[] calldata proof)
+        external
+        nonReentrant
+    {
         _claim(msg.sender, epoch, gauge, token, amount, proof);
     }
 
-    function _claim(address claimant, uint256 epoch, address gauge, address token, uint256 amount, bytes32[] calldata proof) internal {
+    function _claim(
+        address claimant,
+        uint256 epoch,
+        address gauge,
+        address token,
+        uint256 amount,
+        bytes32[] calldata proof
+    ) internal {
         if (claimsPaused) revert ClaimsPaused();
         EpochConfig storage config = epochs[epoch];
         if (config.status != EpochStatus.ClaimsOpen || config.merkleRoot == bytes32(0)) revert ClaimsNotOpen();
@@ -226,7 +247,10 @@ contract BribeMarket {
         uint256[] calldata amounts,
         bytes32[][] calldata proofs
     ) external nonReentrant {
-        if (epochIds.length != gauges.length || gauges.length != tokens.length || tokens.length != amounts.length || amounts.length != proofs.length) revert InvalidAmount();
+        if (
+            epochIds.length != gauges.length || gauges.length != tokens.length || tokens.length != amounts.length
+                || amounts.length != proofs.length
+        ) revert InvalidAmount();
         for (uint256 i = 0; i < epochIds.length; i++) {
             _claim(msg.sender, epochIds[i], gauges[i], tokens[i], amounts[i], proofs[i]);
         }

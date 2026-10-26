@@ -11,7 +11,7 @@ interface Vm {
 }
 
 contract BribeMarketTest {
-    Vm internal constant vm = Vm(address(uint160(uint256(keccak256('hevm cheat code')))));
+    Vm internal constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
     BribeMarket internal market;
     MockERC20 internal token;
     address internal gauge = address(0xBEEF);
@@ -28,8 +28,8 @@ contract BribeMarketTest {
 
     function testDepositStoresTotal() public {
         market.depositBribe(EPOCH, gauge, address(token), 500 ether);
-        require(market.bribeTotal(EPOCH, gauge, address(token)) == 500 ether, 'total mismatch');
-        require(token.balanceOf(address(market)) == 500 ether, 'escrow mismatch');
+        require(market.bribeTotal(EPOCH, gauge, address(token)) == 500 ether, "total mismatch");
+        require(token.balanceOf(address(market)) == 500 ether, "escrow mismatch");
     }
 
     function testLifecycleAndClaim() public {
@@ -42,7 +42,7 @@ contract BribeMarketTest {
         uint256 beforeBalance = token.balanceOf(address(this));
         bytes32[] memory proof = new bytes32[](0);
         market.claim(EPOCH, gauge, address(token), 125 ether, proof);
-        require(token.balanceOf(address(this)) == beforeBalance + 125 ether, 'claim mismatch');
+        require(token.balanceOf(address(this)) == beforeBalance + 125 ether, "claim mismatch");
         vm.expectRevert(BribeMarket.AlreadyClaimed.selector);
         market.claim(EPOCH, gauge, address(token), 125 ether, proof);
     }
@@ -66,8 +66,8 @@ contract BribeMarketTest {
         market.setGaugeAdapter(address(adapter));
         uint256 beforeBalance = token.balanceOf(address(this));
         market.refundInvalidGauge(EPOCH, gauge, address(token));
-        require(token.balanceOf(address(this)) == beforeBalance + 500 ether, 'refund mismatch');
-        require(market.bribeTotal(EPOCH, gauge, address(token)) == 0, 'refund total mismatch');
-        require(market.depositedBy(EPOCH, gauge, address(token), address(this)) == 0, 'depositor balance mismatch');
+        require(token.balanceOf(address(this)) == beforeBalance + 500 ether, "refund mismatch");
+        require(market.bribeTotal(EPOCH, gauge, address(token)) == 0, "refund total mismatch");
+        require(market.depositedBy(EPOCH, gauge, address(token), address(this)) == 0, "depositor balance mismatch");
     }
 }
