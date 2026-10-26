@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Bribe market"},{"path":"/gauge/:id","title":"Gauge detail"},{"path":"/advisor","title":"Vote Advisor"},{"path":"/claims","title":"Claims"},{"path":"/briber","title":"Briber workspace"},{"path":"/verify","title":"Verification"}]}

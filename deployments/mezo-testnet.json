@@ -1,0 +1,116 @@
+{
+  "network": "Mezo Testnet",
+  "chainId": 31611,
+  "rpcUrl": "https://rpc.test.mezo.org",
+  "explorerUrl": "https://explorer.test.mezo.org",
+  "deployer": "0x7119d53f0241F16c96b521ccF862473e18a29d6b",
+  "bribeMarket": "0xe378E93D5eC4dDa719355c5274d85e97c3a0A500",
+  "publisher": "0x7119d53f0241F16c96b521ccF862473e18a29d6b",
+  "owner": "0x7119d53f0241F16c96b521ccF862473e18a29d6b",
+  "guardian": "0x7119d53f0241F16c96b521ccF862473e18a29d6b",
+  "tokens": {
+    "MUSD": "0x118917a40FAF1CD7a13dB0Ef56C86De7973Ac503",
+    "MEZO": "0x7B7c000000000000000000000000000000000001"
+  },
+  "minimumDeposit": "100000000000000000000",
+  "disputeWindowSeconds": 86400,
+  "epochWindows": {
+    "42": {
+      "status": "Open",
+      "depositClose": 1793189725,
+      "depositCloseUtc": "2026-10-28T12:15:25Z"
+    }
+  },
+  "gaugeAdapter": "0x9E3439387B685FD4731Fdc7b3382B3348C03998a",
+  "gaugeAdapterDeployment": {
+    "contract": "MezoGaugeAdapter",
+    "address": "0x9E3439387B685FD4731Fdc7b3382B3348C03998a",
+    "voter": "0x72F8dd7F44fFa19E45955aa20A5486E8EB255738",
+    "deployer": "0x7119d53f0241F16c96b521ccF862473e18a29d6b",
+    "deployment": {
+      "transaction": "0x6df52be1e25194dce3cfa3d08640a56517702a533d78a484c667587bb4c86756",
+      "block": 16379346,
+      "receiptStatus": "success",
+      "receiptVerifiedBy": "Mezo RPC"
+    },
+    "configuration": {
+      "bribeMarket": "0xe378E93D5eC4dDa719355c5274d85e97c3a0A500",
+      "method": "setGaugeAdapter(address)",
+      "transaction": "0x7330ae76f6b683d88190407c01c400023d296bddc00fff294e573fea75fca115",
+      "block": 16379346,
+      "receiptStatus": "success",
+      "verifiedBy": "Foundry broadcast result, block inclusion, and BribeMarket.gaugeAdapter() state"
+    },
+    "runtimeBytecodeCheck": {
+      "onChainCodeBytes": 1463,
+      "localArtifactCodeBytes": 1463,
+      "matchesLocalArtifact": true,
+      "comparison": "Runtime bytecode matched after normalizing immutable voter references",
+      "normalizedRuntimeSha256": "7c9931cd677010ec64ec8f8329b553e87585214f865432cc4e6e16d5ab48293c"
+    },
+    "poolToGaugeValidation": {
+      "method": "isGaugeValid(address)",
+      "pool1": "0xd16A5Df82120ED8D626a1a15232bFcE2366d6AA9",
+      "gauge1": "0xeF07B6852f4F877fB3BBD90b8f358Fb3E07D0Cc3",
+      "pool1Valid": true,
+      "gauge1Valid": true,
+      "pool2": "0x525F049A4494dA0a6c87E3C4df55f9929765Dc3e",
+      "gauge2": "0x57Ebd7aFD11923082454689975Ea592C7Ed219a0",
+      "pool2Valid": true,
+      "gauge2Valid": true,
+      "verifiedAt": "2026-10-26T18:41:25+08:00"
+    }
+  },
+  "gaugeAdapterHistory": [
+    {
+      "address": "0x0d0bFeD2AC5458d811568363fEa64106a1558Bb4",
+      "deploymentTransaction": "0x0cc86616c982c05a98fd14195d0e7f6f613b8eaf037cd3707e725775e792a176",
+      "setGaugeAdapterTransaction": "0xb72ebebdf7e2fc6738879cd7cdfe2f1d03ddb61af870c9d5cc0a2fc258abaa16",
+      "block": 16376699,
+      "note": "Superseded: accepted gauge addresses but rejected pool keys."
+    }
+  ],
+  "gaugeController": "0x72F8dd7F44fFa19E45955aa20A5486E8EB255738",
+  "gaugeControllerType": "VeBTCVoter",
+  "gaugeControllerVerified": true,
+  "gaugeControllerVerification": {
+    "codeSize": 16572,
+    "length": 4,
+    "totalWeight": "1287104736360957645",
+    "poolGaugeMappings": {
+      "0xd16A5Df82120ED8D626a1a15232bFcE2366d6AA9": "0xeF07B6852f4F877fB3BBD90b8f358Fb3E07D0Cc3",
+      "0x525F049A4494dA0a6c87E3C4df55f9929765Dc3e": "0x57Ebd7aFD11923082454689975Ea592C7Ed219a0"
+    }
+  },
+  "transactions": {
+    "deploy": "0xd8c2b7deccec315461c3898cd877f228b5df50ba108e2d95aaa0658622baaad1",
+    "allowlistMUSD": "0xee260ed54439d7b83c90390b6fc1273c78aa808c9afa1c9970b9ab2412afbfc8",
+    "allowlistMEZO": "0xb04854568fbcb1f9bbbc0f83cc12c264d48ce8c290c126ebba6fc591cfa7b205",
+    "setDisputeWindow": "0xc18d43ee7f3b8bc63b680b512ec897db0e6130ac609abd9fed3f7dc4f7d81ea6",
+    "setEpochWindow42": "0x9ab82dcd6511ce643f52e78e8570437e8949a7c2eef8618a5cdd8df9f44d3060",
+    "deployGaugeAdapter": "0x6df52be1e25194dce3cfa3d08640a56517702a533d78a484c667587bb4c86756",
+    "setGaugeAdapter": "0x7330ae76f6b683d88190407c01c400023d296bddc00fff294e573fea75fca115",
+    "e2eApproval100MUSD": "0x58cfcc6441a4bf11297ded928ed9281ad9140e4e05f56db03706c25802e410b8",
+    "e2eDeposit100MUSD": "0x41998c516048993f664477bc96f7a1eed5b906a6fd57a27ac1093f1233bb0f8d"
+  },
+  "blocks": {
+    "deploy": 16373765,
+    "allowlistMUSD": 16373766,
+    "allowlistMEZO": 16373765,
+    "setDisputeWindow": 16373767,
+    "setEpochWindow42": 16373867,
+    "deployGaugeAdapter": 16379346,
+    "setGaugeAdapter": 16379346
+  },
+  "verifiedOnChain": true,
+  "frontendLiveWrites": true,
+  "e2eDeposit": {
+    "epoch": 42,
+    "gaugeKey": "0xd16A5Df82120ED8D626a1a15232bFcE2366d6AA9",
+    "token": "0x118917a40FAF1CD7a13dB0Ef56C86De7973Ac503",
+    "amount": "100000000000000000000",
+    "bribeTotalAfter": "100000000000000000000",
+    "allowanceAfter": "0",
+    "verifiedBy": "BribeDeposited event and direct RPC reads"
+  }
+}
